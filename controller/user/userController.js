@@ -18,6 +18,10 @@ export const register = async (req, res) => {
         return responseError(res, 'Password daxil et')
     }
 
+    if (password.length < 8) {
+        return responseError(res, 'Password en az 8 simvoldan ibaret olmali')
+    }
+
     const user = await userModel.findOne({ username })
     if (user) {
         return responseError(res, 'Username kayitli')
